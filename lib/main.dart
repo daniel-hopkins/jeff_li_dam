@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jeff_li_dam/pages/home_page.dart';
-import 'package:jeff_li_dam/utils/config.dart';
+import 'package:jeff_li_dam/private/config.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:jeff_li_dam/pages/account_page.dart';
 import 'package:jeff_li_dam/pages/login_page.dart';
