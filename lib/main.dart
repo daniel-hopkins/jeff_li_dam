@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jeff_li_dam/locator.dart';
 import 'package:jeff_li_dam/pages/home_page.dart';
 import 'package:jeff_li_dam/private/config.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -10,6 +12,8 @@ import 'package:jeff_li_dam/pages/splash_page.dart';
 //     SupabaseClient(Config.supabaseURL, Config.supabaseAnonKey);
 
 Future<void> main() async {
+  // Register all the models and services before the app starts
+  setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(
@@ -18,7 +22,7 @@ Future<void> main() async {
   );
   // await supabase.auth.signUp('daniel@jefflistudio.com', '111qqq');
 
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

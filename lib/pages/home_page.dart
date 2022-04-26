@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:jeff_li_dam/pages/job_list_page.dart';
 // import 'package:jeff_li_dam/main.dart';
-import 'package:jeff_li_dam/models/brand.dart';
-import 'package:jeff_li_dam/models/model.dart';
-import 'package:jeff_li_dam/widgets/client_dropdown.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+// import 'package:jeff_li_dam/models/brand.dart';
+// import 'package:jeff_li_dam/models/model.dart';
+// // import 'package:jeff_li_dam/widgets/crud/brand_dropdown.dart';
+import 'package:jeff_li_dam/widgets/crud/insert_order.dart';
+import 'package:jeff_li_dam/widgets/side_layout.dart';
+// import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../main.dart';
@@ -21,31 +24,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: ClientDropdown(),
+        body: Row(
+      children: [
+        const SideLayout(),
+        Expanded(
+          flex: 4,
+          child: JobListPage(),
+        ),
+      ],
     ));
-  }
-
-  Future<List<Brand>> getBrands() async {
-    final response =
-        await Supabase.instance.client.from('brands').select().execute();
-    // print("response.error = ${response.error}");
-    // print(response.data);
-    final dataList = response.data as List;
-    return dataList.map((map) => Brand.fromJson(map)).toList();
-  }
-
-  Future<List<Model>> getModels() async {
-    final response = await Supabase.instance.client
-        .from('models')
-        .select()
-        .eq('brand_id', brandId)
-        .order('name', ascending: true)
-        .execute();
-    print("response.error = ${response.error}");
-    print(response.data);
-    final dataList = response.data as List;
-    return dataList.map((map) => Model.fromJson(map)).toList();
   }
 }
 

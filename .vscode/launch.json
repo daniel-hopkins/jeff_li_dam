@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Chrome",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "-d",
+        "chrome",
+        "--web-port",
+        "3000"
+      ],
+    },
+    {
+      "name": "domino_yatzy",
+      "request": "launch",
+      "type": "dart"
+    },
+  ]
+}
